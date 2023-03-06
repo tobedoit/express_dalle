@@ -3,7 +3,8 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
 
-// https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/
+/* https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/
+** es6 에서 __dirname not defined! only commonjs에서만 */
 import path from 'path';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
