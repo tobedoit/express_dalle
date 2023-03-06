@@ -2,6 +2,7 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
+import path from 'path';
 
 import connectDB from './mongodb/connect.js';
 import postRoutes from './routes/postRoutes.js';
@@ -11,8 +12,7 @@ dotenv.config();
 
 const app = express();
 
-app.use(express.static('dist'));
-
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use(cors());
 // app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ limit: '50mb' }));
@@ -27,7 +27,7 @@ app.use('/api/v1/dalle', dalleRoutes);
 /* https://codingapple.com/unit/nodejs-react-integration/?id=2305
 ** 리액트 라우터가 핸들링 하도록 */
 app.get('*', async(req, res) => {
-  res.sendFile(__dirname + '/dist/index.html');
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 })
 
 const port = process.env.PORT || 8080;
