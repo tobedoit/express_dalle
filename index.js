@@ -2,7 +2,12 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
+
+// https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/
 import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 import connectDB from './mongodb/connect.js';
 import postRoutes from './routes/postRoutes.js';
@@ -12,7 +17,8 @@ dotenv.config();
 
 const app = express();
 
-app.use(express.static('dist'));
+app.use(express.static(path.join(__dirname, 'dist')));
+// app.use(express.static('dist'));
 
 app.use(cors());
 // app.use(express.urlencoded({ extended: false }));
