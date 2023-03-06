@@ -24,6 +24,12 @@ app.use('/api/v1/dalle', dalleRoutes);
 //   res.sendFile(__dirname + '/dist/index.html');
 // })
 
+/* https://codingapple.com/unit/nodejs-react-integration/?id=2305
+** 리액트 라우터가 핸들링 하도록 */
+app.get('*', async(req, res) => {
+  res.sendFile(__dirname + '/dist/index.html');
+})
+
 const port = process.env.PORT || 8080;
 const startServer = async () => {
   try {
@@ -35,9 +41,3 @@ const startServer = async () => {
 }
 
 startServer();
-
-/* https://codingapple.com/unit/nodejs-react-integration/?id=2305
-** 리액트 라우터가 핸들링 하도록 */
-app.get('*', async (req, res) => {
-  res.sendFile(__dirname + '/dist/index.html');
-})
